@@ -1,0 +1,81 @@
+{
+    "reel_positions": [
+        [[60, -32], [60, 160], [60, 352]],
+        [[320, -32], [320, 160], [320, 352]],
+        [[580, -32], [580, 160], [580, 352]]
+    ],
+    "machines": [
+        {
+            "description": "Pale Orange",
+            "background": "resources/machines/17-background.png",
+            "foreground": "resources/machines/17-foreground.png"
+        },
+        {
+            "description": "Pale Yellow",
+            "background": "resources/machines/40-background.png",
+            "foreground": "resources/machines/40-foreground.png"
+        },
+        {
+            "description": "Pale Green",
+            "background": "resources/machines/55-background.png",
+            "foreground": "resources/machines/55-foreground.png"
+        },
+        {
+            "description": "Pale Blue",
+            "background": "resources/machines/134-background.png",
+            "foreground": "resources/machines/134-foreground.png"
+        },
+        {
+            "description": "Pale Purple",
+            "background": "resources/machines/200-background.png",
+            "foreground": "resources/machines/200-foreground.png"
+        },
+        {
+            "description": "Pale Pink",
+            "background": "resources/machines/240-background.png",
+            "foreground": "resources/machines/240-foreground.png"
+        }
+    ],
+    "reels": [
+        [
+            "resources/emoji/food_drink_herbs/fruit_veg",
+            "resources/emoji/nature_effects/plants",
+            "resources/emoji/objects",
+            "resources/emoji/symbols/restrictive"
+        ],
+        [
+            "resources/emoji/expressions",
+            "resources/emoji/nature_effects/weather",
+            "resources/emoji/nature_effects/effects",
+            "resources/emoji/objects",
+            "resources/emoji/symbols/arrows"
+        ],
+        [
+            "resources/emoji/food_drink_herbs/fruit_veg",
+            "resources/emoji/nature_effects/plants",
+            "resources/emoji/objects",
+            "resources/emoji/symbols/restrictive"
+        ]
+    ],
+    "statuses": [
+        "Is this a winning combination? You figure out!",
+        "I'm no one-arm-bandit!",
+        [["What's not to like about a", "Isn't this a nice"], " {machine} fruit machine?"],
+        "Almost landed on {random_outside_payline} this time...",
+        [["Too bad", "Valiant effort", "You tried"], " {random_outside_payline} - maybe next time!"],
+        "Your lucky emoji for the day? {random_payline}!",
+        "[GLaDOS voice] There's a hole in the sky, through which {random_payline} can fly.",
+        "No reel left unspun!",
+        "Rules: {payline[0]} beats {payline[2]}; {payline[1]} beats {payline[0]}; {payline[2]} beats {payline[1]}.",
+        "I'm only a bot. I couldn't tell you if {random_payline} looks right on this {machine} fruit machine...",
+        [["Ask yourself:", "Quick question:", "Take a moment to consider:", "Here's a deep one:"], " is {random_payline} ", ["a fruit", "real", "magic", "scary", "mysterious"], "?"],
+        "{month} is never complete without {random_payline}.",
+        "Tomorrow is Bring Your {random_payline} To Work Day!",
+        "{weekday}? {random_payline}!",
+        "You wouldn't download a {random_payline}!",
+        "{random_payline} is my favourite on {month} {weekday}s.",
+        "It's {random_payline} time!",
+        ["I bet one of you thought this combination was ", ["lewd", "deep", "incredibly boring", "all about {random_payline}", "better with {random_outside_payline} instead"], "."],
+        "Never gonna give {random_payline} up, never gonna let {random_payline} down."
+    ]
+}
