@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+
+# Change to base directory of the project
+cd "$(dirname "$0")/../" || exit 1
+
+if [ ! -d .venv ] || [ ! -f .venv/bin/activate ]; then
+    rm -rf .venv/
+    python3 -m venv --prompt fruitmachine .venv
+    . .venv/bin/activate
+    pip install -r requirements.txt
+else
+    . .venv/bin/activate
+fi
+
+python3 -m fruitmachine "$@"
+
+deactivate  # Probably needless, but...
