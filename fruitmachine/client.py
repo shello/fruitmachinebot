@@ -23,9 +23,7 @@ class Client:
     """FruitMachine client."""
 
     client_name = 'Fruit Machine Bot'
-    api_base_url: str
-    client_cred: str
-    access_token: str
+    debug: bool
     _masto: Mastodon
 
     def __init__(self, debug: bool = False, api_base_url: str = _DEFAULT_API,
@@ -35,7 +33,6 @@ class Client:
         """Initialise FruitMachine."""
         self.debug = debug
         self._masto = None
-        self.api_base_url = api_base_url
 
         client_cred_file = os.path.join(_BASEDIR, "data", "client_cred.secret")
         access_token_file = os.path.join(_BASEDIR, "data", "user_cred.secret")
@@ -59,35 +56,12 @@ class Client:
             raise RuntimeError("Access token not provided and file not found.")
 
         self._masto = Mastodon(
-            **masto_auth_params,
-            api_base_url=self.api_base_url
+            api_base_url=api_base_url,
+            **masto_auth_params
         )
 
         self.resources = Resources()
         self.phrase_generator = PhraseGenerator(self.resources.get_statuses())
-
-    def get_random_status(self, machine, reels):
-        """Get a random status."""
-        phrase = random.choice(self.resources.get_statuses())
-
-        if isinstance(phrase, abc.Iterable) and not isinstance(phrase, str):
-            phrase = ' '.join(random.choice(s) for s in phrase)
-
-        payline = tuple(r[1].description for r in reels)
-        outside_payline = [r[0].description for r in reels] \
-            + [r[2].description for r in reels]
-
-        params = {
-            'machine': machine.description,
-            'payline': payline,
-            'random_payline': random.choice(payline),
-            'outside_payline': outside_payline,
-            'random_outside_payline': random.choice(outside_payline),
-            'month': format(date.today(), "%B"),
-            'weekday': format(date.today(), "%A")
-        }
-
-        return phrase.format(**params)
 
     def post_fruit_machine(self):
         """Post a fruit machine."""
@@ -103,11 +77,13 @@ class Client:
             # Be kind, rewind!
             image.seek(0)
 
+            # Upload/post image file
             media_data = self._masto.media_post(image,
                                                 mime_type='image/png',
                                                 description=description)
             logging.info(f"Uploaded image {image.name}: {media_data}")
 
+            # Then post the status with the media file
             status = self.phrase_generator.generate_phrase(machine=machine,
                                                            reels=reels)
 
