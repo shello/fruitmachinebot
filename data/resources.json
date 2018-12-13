@@ -57,7 +57,7 @@
             "resources/emoji/symbols/restrictive"
         ]
     ],
-    "statuses": [
+    "status_templates": [
         "Is this a winning combination? You figure out!",
         "I'm no one-arm-bandit!",
         [["What's not to like about a", "Isn't this a nice"], " {machine} fruit machine?"],

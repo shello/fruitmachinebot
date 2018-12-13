@@ -51,7 +51,7 @@ class FruitMachine:
             f"centre payline showing a combination of {payline[0]}, " \
             f" {payline[1]}, and {payline[2]}."
 
-        status_message = PhraseGenerator(self.res.get_statuses())\
+        status_message = PhraseGenerator(self.res.get_status_templates()) \
             .generate_phrase(machine=machine, reels=reels)
 
         return machine, reels, description, status_message

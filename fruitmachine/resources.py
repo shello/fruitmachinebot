@@ -95,6 +95,6 @@ class Resources:
 
         return tuple(reels)
 
-    def get_statuses(self) -> Iterable:
-        """Get all statuses."""
-        return self._res['statuses']
+    def get_status_templates(self) -> Iterable:
+        """Get all status templates."""
+        return self._res['status_templates']
