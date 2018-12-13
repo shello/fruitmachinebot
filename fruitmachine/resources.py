@@ -6,8 +6,7 @@ import os
 import os.path
 from typing import Iterable, Optional, Tuple
 
-from .fruitmachine import MachineStyle, Reel, ReelSymbol
-
+from fruitmachine.parts import MachineStyle, Reel, ReelSymbol
 
 _BASEDIR = os.path.abspath(os.path.join(os.path.basename(__file__), '..'))
 
@@ -50,6 +49,36 @@ class Resources:
 
         return filename
 
+    @classmethod
+    def get_symbol_description(cls, name):
+        """Transform the filename into a description."""
+        return name.replace('_', ' ').title()
+
+    @classmethod
+    def get_reel_symbols(cls, path: str):
+        """Get all the reel symbols from a given path."""
+        real_path = os.path.join(_BASEDIR, path)
+
+        if not os.path.exists(real_path):
+            raise Exception(f"Path does not exist: {real_path}")
+
+        symbols_found = defaultdict(list)
+        for root, _, files in os.walk(path):
+            for fname in files:
+                fpath = os.path.join(root, fname)
+                raw_name, ext = os.path.basename(fpath).rsplit('.', 1)
+
+                if ext.lower() != 'png':
+                    continue
+
+                name = cls._get_symbol_basename(raw_name)
+                description = cls.get_symbol_description(name)
+
+                symbol = ReelSymbol(description=description, image_file=fpath)
+                symbols_found[name].append(symbol)
+
+        return symbols_found.values()
+
     def get_reels(self) -> Tuple[Reel, ...]:
         """Get a list of reels with symbols loaded in."""
         reels = []
@@ -57,24 +86,7 @@ class Resources:
         for reel in self._res['reels']:
             symbols = []
             for path in reel:
-                real_path = os.path.join(_BASEDIR, path)
-
-                if not os.path.exists(real_path):
-                    raise Exception(f"Path does not exist: {real_path}")
-
-                for root, _, files in os.walk(path):
-                    symbols_found = defaultdict(list)
-                    for fname in files:
-                        fpath = os.path.join(root, fname)
-
-                        fbase = os.path.basename(fpath)
-                        fbase = fbase[:fbase.rfind('.')]
-                        fbase = self._get_symbol_basename(fbase)
-
-                        symb = ReelSymbol(description=fbase, image_file=fpath)
-                        symbols_found[fbase].append(symb)
-                    symbols += symbols_found.values()
-
+                symbols += self.get_reel_symbols(path)
             reels.append(Reel(symbols))
 
         return tuple(reels)

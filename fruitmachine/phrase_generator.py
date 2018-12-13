@@ -6,7 +6,7 @@ from operator import mul
 import random
 from typing import Iterable, TypeVar
 
-from .fruitmachine import FruitMachine, MachineStyle, Reel
+from fruitmachine.parts import MachineStyle, Reel
 
 TemplateLeaf = str
 TemplateTree = Iterable
@@ -74,11 +74,9 @@ class PhraseGenerator:
                         reels: Iterable[Reel]) -> str:
         """Get a random status."""
         # Prepare parameters for templates
-        payline = tuple(FruitMachine.get_description(r[1].description)
-                        for r in reels)
-        outside_payline = [FruitMachine.get_description(r[0].description)
-                           for r in reels] \
-            + [FruitMachine.get_description(r[2].description) for r in reels]
+        payline = tuple(r[1].description for r in reels)
+        outside_payline = [r[0].description for r in reels] \
+            + [r[2].description for r in reels]
 
         params = {
             'machine': machine.description,

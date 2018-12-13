@@ -6,20 +6,12 @@ import logging
 
 def main_local(out_filename: str):
     """CLI for generating Fruit Machines locally."""
-    from .resources import Resources
-    from .fruitmachine import FruitMachine
-    from .phrase_generator import PhraseGenerator
+    from fruitmachine.fruitmachine import FruitMachine
 
-    resources = Resources()
-    phrase_generator = PhraseGenerator(resources.get_statuses())
-
-    fruit_machine = FruitMachine(
-        machines=resources.get_machines(),
-        reels=resources.get_reels())
+    fruit_machine = FruitMachine()
 
     with open(out_filename, mode='wb') as out_file:
-        description, machine, reels = fruit_machine.generate(out_file)
-        status = phrase_generator.generate_phrase(machine=machine, reels=reels)
+        description, status = fruit_machine.generate(out_file)
 
     print(status)
     print("    Image description:", description)
@@ -28,8 +20,12 @@ def main_local(out_filename: str):
 def main_post(debug: bool = False):
     """CLI for posting a random Fruit Machine to the internet."""
     import os
-    from .client import Client
+    import tempfile
 
+    from fruitmachine.fruitmachine import FruitMachine
+    from fruitmachine.client import Client
+
+    # Set up the client
     env_client_id = os.getenv('FRUITMACHINE_CLIENT_ID')
     env_client_secret = os.getenv('FRUITMACHINE_CLIENT_SECRET')
     env_access_token = os.getenv('FRUITMACHINE_ACCESS_TOKEN')
@@ -44,7 +40,18 @@ def main_post(debug: bool = False):
         auth_params['access_token'] = env_access_token
 
     client = Client(debug=debug, **auth_params)
-    client.post_fruit_machine()
+
+    # Let's spin!
+    fruit_machine = FruitMachine()
+
+    with tempfile.NamedTemporaryFile(mode='w+b') as image:
+        (description, status) = fruit_machine.generate(image)
+
+        # Be kind, rewind!
+        image.seek(0)
+
+        client.post(status=status, media_fp=image, media_mime_type="image/png",
+                    media_description=description)
 
 
 def main():

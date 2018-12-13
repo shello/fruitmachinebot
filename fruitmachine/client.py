@@ -1,16 +1,8 @@
 """A FruitMachine client."""
 
-import collections.abc as abc
 import logging
 import os.path
-import random
-import tempfile
-from typing import Optional
-from datetime import date
-
-from .fruitmachine import FruitMachine
-from .resources import Resources
-from .phrase_generator import PhraseGenerator
+from typing import BinaryIO, Optional
 
 from mastodon import Mastodon
 
@@ -34,60 +26,54 @@ class Client:
         self.debug = debug
         self._masto = None
 
+        self.authenticate(api_base_url=api_base_url, client_id=client_id,
+                          client_secret=client_secret,
+                          access_token=access_token)
+
+    def authenticate(self, api_base_url: str = _DEFAULT_API,
+                     client_id: Optional[str] = None,
+                     client_secret: Optional[str] = None,
+                     access_token: Optional[str] = None):
+        """Initialise the authentication of the client."""
+        if self._masto:
+            raise RuntimeError("Client is already initialised.")
+
         client_cred_file = os.path.join(_BASEDIR, "data", "client_cred.secret")
         access_token_file = os.path.join(_BASEDIR, "data", "user_cred.secret")
 
-        masto_auth_params = {}
+        auth_kwargs = {}
 
         if client_id and client_secret:
-            masto_auth_params['client_id'] = client_id
-            masto_auth_params['client_secret'] = client_secret
+            auth_kwargs['client_id'] = client_id
+            auth_kwargs['client_secret'] = client_secret
         elif os.path.isfile(client_cred_file):
-            masto_auth_params['client_id'] = client_cred_file
-        else:
-            raise RuntimeError("Client ID file or client_id and client_secret"
-                               "parameters missing.")
+            auth_kwargs['client_id'] = client_cred_file
 
         if access_token:
-            masto_auth_params['access_token'] = access_token
+            auth_kwargs['access_token'] = access_token
         elif os.path.isfile(access_token_file):
-            masto_auth_params['access_token'] = access_token_file
-        else:
-            raise RuntimeError("Access token not provided and file not found.")
+            auth_kwargs['access_token'] = access_token_file
 
-        self._masto = Mastodon(
-            api_base_url=api_base_url,
-            **masto_auth_params
-        )
+        if 'client_id' in auth_kwargs and 'access_token' in auth_kwargs:
+            self._masto = Mastodon(
+                api_base_url=api_base_url,
+                **auth_kwargs)
 
-        self.resources = Resources()
-        self.phrase_generator = PhraseGenerator(self.resources.get_statuses())
+    def post(self, status: str, media_fp: BinaryIO, media_mime_type: str,
+             media_description: str):
+        """Send a status post with a media file."""
+        if not self._masto:
+            raise RuntimeError("Unable to post, client isn't initialised.")
 
-    def post_fruit_machine(self):
-        """Post a fruit machine."""
-        fruit_machine = FruitMachine(
-            machines=self.resources.get_machines(),
-            reels=self.resources.get_reels())
+        # Upload/post image file
+        media_data = self._masto.media_post(media_fp,
+                                            mime_type=media_mime_type,
+                                            description=media_description)
+        logging.info(f"Uploaded image: {media_data}")
 
+        # Then post the status with the media file
         status_visibility = 'direct' if self.debug else 'public'
-
-        with tempfile.NamedTemporaryFile(mode='w+b') as image:
-            (description, machine, reels) = fruit_machine.generate(image)
-
-            # Be kind, rewind!
-            image.seek(0)
-
-            # Upload/post image file
-            media_data = self._masto.media_post(image,
-                                                mime_type='image/png',
-                                                description=description)
-            logging.info(f"Uploaded image {image.name}: {media_data}")
-
-            # Then post the status with the media file
-            status = self.phrase_generator.generate_phrase(machine=machine,
-                                                           reels=reels)
-
-            status_data = self._masto.status_post(status,
-                                                  media_ids=[media_data],
-                                                  visibility=status_visibility)
-            logging.info(f"Posted {status_visibility} status: {status_data}")
+        status_data = self._masto.status_post(status,
+                                              media_ids=[media_data],
+                                              visibility=status_visibility)
+        logging.info(f"Posted {status_visibility} status: {status_data}")
