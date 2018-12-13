@@ -49,7 +49,7 @@ class FruitMachine:
         payline = [r[1].description for r in reels]
         description = f"A {machine.description} Fruit Machine with the " \
             f"centre payline showing a combination of {payline[0]}, " \
-            f" {payline[1]}, and {payline[2]}."
+            f"{payline[1]}, and {payline[2]}."
 
         status_message = PhraseGenerator(self.res.get_status_templates()) \
             .generate_phrase(machine=machine, reels=reels)
