@@ -4,6 +4,7 @@ from collections import defaultdict
 import json
 import os
 import os.path
+from typing import Iterable, Optional, Tuple
 
 from .fruitmachine import MachineStyle, Reel, ReelSymbol
 
@@ -16,7 +17,7 @@ class Resources:
 
     _res: dict
 
-    def __init__(self, res_filename=None):
+    def __init__(self, res_filename: Optional[str] = None):
         """Initialise resources."""
         if res_filename is None:
             res_file = os.path.join(_BASEDIR, 'data', 'resources.json')
@@ -49,7 +50,7 @@ class Resources:
 
         return filename
 
-    def get_reels(self) -> tuple:
+    def get_reels(self) -> Tuple[Reel, ...]:
         """Get a list of reels with symbols loaded in."""
         reels = []
 
@@ -78,6 +79,6 @@ class Resources:
 
         return tuple(reels)
 
-    def get_statuses(self) -> list:
+    def get_statuses(self) -> Iterable:
         """Get all statuses."""
         return self._res['statuses']

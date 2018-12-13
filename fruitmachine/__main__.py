@@ -4,7 +4,7 @@ from argparse import ArgumentParser
 import logging
 
 
-def main_local(out_filename):
+def main_local(out_filename: str):
     """CLI for generating Fruit Machines locally."""
     from .resources import Resources
     from .fruitmachine import FruitMachine
@@ -25,7 +25,7 @@ def main_local(out_filename):
     print("    Image description:", description)
 
 
-def main_post(debug=False):
+def main_post(debug: bool = False):
     """CLI for posting a random Fruit Machine to the internet."""
     import os
     from .client import Client

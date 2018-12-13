@@ -11,6 +11,7 @@ from .fruitmachine import FruitMachine, MachineStyle, Reel
 TemplateLeaf = str
 TemplateTree = Iterable
 Template = TypeVar('Template', TemplateLeaf, TemplateTree)
+TemplateList = Iterable[Template]
 
 
 class PhraseGenerator:
@@ -18,7 +19,7 @@ class PhraseGenerator:
 
     templates: list
 
-    def __init__(self, templates):
+    def __init__(self, templates: Iterable[Template]):
         """Initialise the phrase generator."""
         self.templates = templates
 
@@ -28,7 +29,7 @@ class PhraseGenerator:
         return isinstance(template, str)
 
     @classmethod
-    def template_weight(cls, template: Template, root=False) -> int:
+    def template_weight(cls, template: Template, root: bool = False) -> int:
         """Get the weigh of a given template."""
         if cls.is_template_leaf(template):
             return 1
@@ -42,19 +43,22 @@ class PhraseGenerator:
         return sum(weight_gen)
 
     @classmethod
-    def get_template_weights(cls, templates, root=False) -> Iterable:
+    def get_template_weights(cls, templates: TemplateList,
+                             root: bool = False) -> Iterable:
         """Calculate weighs for the templates, in order."""
         return [cls.template_weight(t, root=root) for t in templates]
 
     @classmethod
-    def weighted_choice(cls, templates: TemplateTree, root=False) -> Template:
+    def weighted_choice(cls, templates: TemplateTree,
+                        root: bool = False) -> Template:
         """Return a weighted choice between all templates in the tree."""
         return random.choices(templates, k=1,
                               weights=cls.get_template_weights(templates,
                                                                root=root))[0]
 
     @classmethod
-    def instantiate_template(cls, template: Template, root=False) -> str:
+    def instantiate_template(cls, template: Template,
+                             root: bool = False) -> str:
         """Turn a template-tree into a template-string."""
         if cls.is_template_leaf(template):
             return template
@@ -66,7 +70,8 @@ class PhraseGenerator:
         selected_template = cls.weighted_choice(template, root=root)
         return cls.instantiate_template(selected_template)
 
-    def generate_phrase(self, machine: MachineStyle, reels: Iterable[Reel]) -> str:
+    def generate_phrase(self, machine: MachineStyle,
+                        reels: Iterable[Reel]) -> str:
         """Get a random status."""
         # Prepare parameters for templates
         payline = tuple(FruitMachine.get_description(r[1].description)

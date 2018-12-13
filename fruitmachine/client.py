@@ -5,6 +5,7 @@ import logging
 import os.path
 import random
 import tempfile
+from typing import Optional
 from datetime import date
 
 from .fruitmachine import FruitMachine
@@ -27,8 +28,10 @@ class Client:
     access_token: str
     _masto: Mastodon
 
-    def __init__(self, api_base_url=_DEFAULT_API, debug=False,
-                 client_id=None, client_secret=None, access_token=None):
+    def __init__(self, debug: bool = False, api_base_url: str = _DEFAULT_API,
+                 client_id: Optional[str] = None,
+                 client_secret: Optional[str] = None,
+                 access_token: Optional[str] = None):
         """Initialise FruitMachine."""
         self.debug = debug
         self._masto = None
