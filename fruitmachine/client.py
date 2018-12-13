@@ -69,7 +69,7 @@ class Client:
             machines=self.resources.get_machines(),
             reels=self.resources.get_reels())
 
-        status_visibility = 'private' if self.debug else 'public'
+        status_visibility = 'direct' if self.debug else 'public'
 
         with tempfile.NamedTemporaryFile(mode='w+b') as image:
             (description, machine, reels) = fruit_machine.generate(image)
