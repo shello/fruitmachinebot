@@ -4,14 +4,14 @@ from datetime import date
 from functools import reduce
 from operator import mul
 import random
-from typing import Iterable, TypeVar
+from typing import Iterable, Sequence, TypeVar
 
-from fruitmachine.parts import MachineStyle, Reel
+from fruitmachine.parts import MachineStyle, SpunReels
 
 TemplateLeaf = str
-TemplateTree = Iterable
+TemplateTree = Sequence
 Template = TypeVar('Template', TemplateLeaf, TemplateTree)
-TemplateList = Iterable[Template]
+TemplateList = Sequence[Template]
 
 
 class PhraseGenerator:
@@ -21,7 +21,7 @@ class PhraseGenerator:
 
     def __init__(self, templates: Iterable[Template]):
         """Initialise the phrase generator."""
-        self.templates = templates
+        self.templates = list(templates)
 
     @classmethod
     def is_template_leaf(cls, template: Template) -> bool:
@@ -44,7 +44,7 @@ class PhraseGenerator:
 
     @classmethod
     def get_template_weights(cls, templates: TemplateList,
-                             root: bool = False) -> Iterable:
+                             root: bool = False) -> Sequence[int]:
         """Calculate weighs for the templates, in order."""
         return [cls.template_weight(t, root=root) for t in templates]
 
@@ -58,7 +58,7 @@ class PhraseGenerator:
 
     @classmethod
     def instantiate_template(cls, template: Template,
-                             root: bool = False) -> str:
+                             root: bool = False) -> TemplateLeaf:
         """Turn a template-tree into a template-string."""
         if cls.is_template_leaf(template):
             return template
@@ -70,8 +70,7 @@ class PhraseGenerator:
         selected_template = cls.weighted_choice(template, root=root)
         return cls.instantiate_template(selected_template)
 
-    def generate_phrase(self, machine: MachineStyle,
-                        reels: Iterable[Reel]) -> str:
+    def generate_phrase(self, machine: MachineStyle, reels: SpunReels) -> str:
         """Get a random status."""
         # Prepare parameters for templates
         payline = tuple(r[1].description for r in reels)

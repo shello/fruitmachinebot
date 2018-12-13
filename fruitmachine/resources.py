@@ -1,10 +1,10 @@
 """Functions to load resources."""
 
-from collections import defaultdict
 import json
 import os
 import os.path
-from typing import Iterable, Optional, Tuple
+from typing import Iterable, MutableMapping, MutableSequence, Optional
+from typing import Sequence
 
 from fruitmachine.parts import MachineStyle, Reel, ReelSymbol
 
@@ -55,14 +55,14 @@ class Resources:
         return name.replace('_', ' ').title()
 
     @classmethod
-    def get_reel_symbols(cls, path: str):
+    def get_reel_symbols(cls, path: str) -> Iterable[ReelSymbol]:
         """Get all the reel symbols from a given path."""
         real_path = os.path.join(_BASEDIR, path)
 
         if not os.path.exists(real_path):
             raise Exception(f"Path does not exist: {real_path}")
 
-        symbols_found = defaultdict(list)
+        symbols_found: MutableMapping[str, ReelSymbol] = {}
         for root, _, files in os.walk(path):
             for fname in files:
                 fpath = os.path.join(root, fname)
@@ -72,21 +72,25 @@ class Resources:
                     continue
 
                 name = cls._get_symbol_basename(raw_name)
-                description = cls.get_symbol_description(name)
 
-                symbol = ReelSymbol(description=description, image_file=fpath)
-                symbols_found[name].append(symbol)
+                if name in symbols_found:
+                    symbols_found[name].image_files.append(fpath)
+                else:
+                    description = cls.get_symbol_description(name)
+                    symbols_found[name] = ReelSymbol(description=description,
+                                                     image_files=[fpath])
 
         return symbols_found.values()
 
-    def get_reels(self) -> Tuple[Reel, ...]:
+    def get_reels(self) -> Sequence[Reel]:
         """Get a list of reels with symbols loaded in."""
         reels = []
 
         for reel in self._res['reels']:
-            symbols = []
+            symbols: MutableSequence[ReelSymbol] = []
             for path in reel:
                 symbols += self.get_reel_symbols(path)
+
             reels.append(Reel(symbols))
 
         return tuple(reels)

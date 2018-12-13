@@ -1,11 +1,12 @@
 """A Fruit Machine bot."""
 
 import random
-from typing import BinaryIO, Tuple, Optional
+from typing import BinaryIO, MutableSequence, Tuple, Optional
 
 from PIL import Image
 
-from fruitmachine.parts import MachineStyle, Reel
+from fruitmachine.parts import ConcreteReelSymbol, MachineStyle, SpunReel
+from fruitmachine.parts import SpunReels
 from fruitmachine.resources import Resources
 from fruitmachine.phrase_generator import PhraseGenerator
 
@@ -24,20 +25,23 @@ class FruitMachine:
         """Get a random Machine style."""
         return random.choice(self.res.get_machines())
 
-    def get_random_reel_symbols(self, count=3):
+    def get_random_reel_symbols(self, count=3) -> SpunReels:
         """Get a random set of 'count' symbols for each reel."""
-        reels = []
+        reels: MutableSequence[SpunReel] = []
 
         for reel in self.res.get_reels():
-            # Select 'count' symbols from each reel
-            symbols = random.sample(reel.symbols, count)
+            spun_reel = []
+            for symbol in random.sample(reel.symbols, count):
+                selected_image = random.choice(symbol.image_files)
+                selected = ConcreteReelSymbol(description=symbol.description,
+                                              image_file=selected_image)
+                spun_reel.append(selected)
 
-            # Then for each of the symbols choose one of the variants
-            reels.append(tuple(random.choice(symbol) for symbol in symbols))
+            reels.append(tuple(spun_reel))
 
         return tuple(reels)
 
-    def randomize_machine(self) -> Tuple[MachineStyle, Tuple[Reel], str, str]:
+    def randomize_machine(self) -> Tuple[MachineStyle, SpunReels, str, str]:
         """Generate a machine and its messages."""
         machine = self.get_random_machine()
         reels = self.get_random_reel_symbols(count=len(machine.positions[0]))
@@ -52,7 +56,7 @@ class FruitMachine:
 
         return machine, reels, description, status_message
 
-    def generate_image(self, machine: MachineStyle, reels: Tuple[Reel],
+    def generate_image(self, machine: MachineStyle, reels: SpunReels,
                        fp: BinaryIO):
         """Generate and write the Fruit Machine image to a file pointer."""
         img = Image.open(machine.background).convert(mode='RGBA')
