@@ -3,7 +3,7 @@
 import json
 import os
 import os.path
-from typing import Iterable, MutableMapping, MutableSequence, Optional
+from typing import Iterable, Mapping, MutableMapping, MutableSequence, Optional
 from typing import Sequence
 
 from fruitmachine.parts import MachineStyle, Reel, ReelSymbol
@@ -49,13 +49,23 @@ class Resources:
 
         return filename
 
-    @classmethod
-    def get_symbol_description(cls, name):
+    def get_symbol_description(self, name):
         """Transform the filename into a description."""
-        return name.replace('_', ' ').title()
+        name_words = name.lower().split('_')
 
-    @classmethod
-    def get_reel_symbols(cls, path: str) -> Iterable[ReelSymbol]:
+        # Find words that need to be replaced...
+        replacement_words = self.get_replacement_words()
+        words_to_replace = set(name_words).intersection(replacement_words)
+
+        # Replace in name_words directly
+        for word in words_to_replace:
+            while word in name_words:
+                idx = name_words.index(word)
+                name_words[idx] = replacement_words[word]
+
+        return ' '.join(name_words)
+
+    def get_reel_symbols(self, path: str) -> Iterable[ReelSymbol]:
         """Get all the reel symbols from a given path."""
         real_path = os.path.join(_BASEDIR, path)
 
@@ -71,12 +81,12 @@ class Resources:
                 if ext.lower() != 'png':
                     continue
 
-                name = cls._get_symbol_basename(raw_name)
+                name = self._get_symbol_basename(raw_name)
 
                 if name in symbols_found:
                     symbols_found[name].image_files.append(fpath)
                 else:
-                    description = cls.get_symbol_description(name)
+                    description = self.get_symbol_description(name)
                     symbols_found[name] = ReelSymbol(description=description,
                                                      image_files=[fpath])
 
@@ -98,3 +108,7 @@ class Resources:
     def get_status_templates(self) -> Iterable:
         """Get all status templates."""
         return self._res['status_templates']
+
+    def get_replacement_words(self) -> Mapping[str, str]:
+        """Get a list of replacement words for descriptions."""
+        return self._res['replacement_words']

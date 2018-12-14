@@ -57,6 +57,28 @@
             "resources/emoji/symbols/restrictive"
         ]
     ],
+    "replacement_words": {
+        "hmn": "human",
+        "clw": "claw",
+
+        "abc": "ABC",
+        "cd": "CD",
+        "crt": "CRT",
+        "dvd": "DVD",
+        "hp": "HP",
+        "lp": "LP",
+        "mp": "MP",
+        "pp": "PP",
+        "qr": "QR",
+        "tv": "TV",
+        "v": "V",
+        "vhs": "VHS",
+        "vr": "VR",
+        "vs": "VS",
+        "wc": "WC",
+        "xp": "XP",
+        "zzz": "ZZZ"
+    },
     "status_templates": [
         "Is this a winning combination? You figure out!",
         "I'm no one-arm-bandit!",
