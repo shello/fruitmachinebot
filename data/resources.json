@@ -11,27 +11,27 @@
             "foreground": "resources/machines/17-foreground.png"
         },
         {
-            "description": "Pale Yellow",
+            "description": "Yellow",
             "background": "resources/machines/40-background.png",
             "foreground": "resources/machines/40-foreground.png"
         },
         {
-            "description": "Pale Green",
+            "description": "Light Green",
             "background": "resources/machines/55-background.png",
             "foreground": "resources/machines/55-foreground.png"
         },
         {
-            "description": "Pale Blue",
+            "description": "Light Blue",
             "background": "resources/machines/134-background.png",
             "foreground": "resources/machines/134-foreground.png"
         },
         {
-            "description": "Pale Purple",
+            "description": "Purple",
             "background": "resources/machines/200-background.png",
             "foreground": "resources/machines/200-foreground.png"
         },
         {
-            "description": "Pale Pink",
+            "description": "Pink",
             "background": "resources/machines/240-background.png",
             "foreground": "resources/machines/240-foreground.png"
         }
