@@ -6,6 +6,8 @@ from operator import mul
 import random
 from typing import Iterable, Sequence, TypeVar
 
+import inflect
+
 from fruitmachine.parts import MachineStyle, SpunReels
 
 TemplateLeaf = str
@@ -89,4 +91,7 @@ class PhraseGenerator:
 
         selected_template = self.weighted_choice(self.templates)
         template = self.instantiate_template(selected_template, root=True)
-        return template.format(**params)
+
+        # Apply english rules to the formatted string (indef. articles,
+        # plurals, etc)
+        return inflect.engine().inflect(template.format(**params))
