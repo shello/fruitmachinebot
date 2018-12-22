@@ -1,6 +1,6 @@
 """A Fruit Machine bot."""
 
-import random
+from random import SystemRandom
 from typing import BinaryIO, MutableSequence, Tuple, Optional
 
 from PIL import Image
@@ -14,6 +14,8 @@ from fruitmachine.phrase_generator import PhraseGenerator
 class FruitMachine:
     """A Fruit Machine bot."""
 
+    random: SystemRandom
+
     def __init__(self, resources: Optional[Resources] = None):
         """Initialise FruitMachine."""
         if not resources:
@@ -21,9 +23,11 @@ class FruitMachine:
         else:
             self.res = resources
 
+        self.random = SystemRandom()
+
     def get_random_machine(self):
         """Get a random Machine style."""
-        return random.choice(self.res.get_machines())
+        return self.random.choice(self.res.get_machines())
 
     def get_random_reel_symbols(self, count=3) -> SpunReels:
         """Get a random set of 'count' symbols for each reel."""
@@ -31,8 +35,8 @@ class FruitMachine:
 
         for reel in self.res.get_reels():
             spun_reel = []
-            for symbol in random.sample(reel.symbols, count):
-                selected_image = random.choice(symbol.image_files)
+            for symbol in self.random.sample(reel.symbols, count):
+                selected_image = self.random.choice(symbol.image_files)
                 selected = ConcreteReelSymbol(description=symbol.description,
                                               image_file=selected_image)
                 spun_reel.append(selected)

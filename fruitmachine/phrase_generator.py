@@ -3,7 +3,7 @@
 from datetime import date
 from functools import reduce
 from operator import mul
-import random
+from random import SystemRandom
 from typing import Iterable, Sequence, TypeVar
 
 import inflect
@@ -20,10 +20,12 @@ class PhraseGenerator:
     """A phrase generator."""
 
     templates: list
+    random: SystemRandom
 
     def __init__(self, templates: Iterable[Template]):
         """Initialise the phrase generator."""
         self.templates = list(templates)
+        self.random = SystemRandom()
 
     @classmethod
     def is_template_leaf(cls, template: Template) -> bool:
@@ -50,27 +52,24 @@ class PhraseGenerator:
         """Calculate weighs for the templates, in order."""
         return [cls.template_weight(t, root=root) for t in templates]
 
-    @classmethod
-    def weighted_choice(cls, templates: TemplateTree,
+    def weighted_choice(self, templates: TemplateTree,
                         root: bool = False) -> Template:
         """Return a weighted choice between all templates in the tree."""
-        return random.choices(templates, k=1,
-                              weights=cls.get_template_weights(templates,
-                                                               root=root))[0]
+        weights = self.get_template_weights(templates, root=root)
+        return self.random.choices(templates, k=1, weights=weights)[0]
 
-    @classmethod
-    def instantiate_template(cls, template: Template,
+    def instantiate_template(self, template: Template,
                              root: bool = False) -> TemplateLeaf:
         """Turn a template-tree into a template-string."""
-        if cls.is_template_leaf(template):
+        if self.is_template_leaf(template):
             return template
 
         if root:
             # The root template concatenates its parts
-            return ''.join(cls.instantiate_template(t) for t in template)
+            return ''.join(self.instantiate_template(t) for t in template)
 
-        selected_template = cls.weighted_choice(template, root=root)
-        return cls.instantiate_template(selected_template)
+        selected_template = self.weighted_choice(template, root=root)
+        return self.instantiate_template(selected_template)
 
     def generate_phrase(self, machine: MachineStyle, reels: SpunReels) -> str:
         """Get a random status."""
@@ -82,7 +81,7 @@ class PhraseGenerator:
         params = {
             'machine': machine.description,
             'payline': payline,
-            'random_payline': random.choice(payline),
+            'random_payline': self.random.choice(payline),
             'outside_payline': outside_payline,
             'month': format(date.today(), "%B"),
             'weekday': format(date.today(), "%A")
