@@ -84,7 +84,6 @@ class PhraseGenerator:
             'payline': payline,
             'random_payline': random.choice(payline),
             'outside_payline': outside_payline,
-            'random_outside_payline': random.choice(outside_payline),
             'month': format(date.today(), "%B"),
             'weekday': format(date.today(), "%A")
         }

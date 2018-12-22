@@ -81,8 +81,6 @@
     },
     "status_templates": [
         "I'm no one-arm-bandit!",
-        "Oof! Almost landed on {random_outside_payline} this time...",
-        [["Too bad", "Valiant effort", "You tried"], " {random_outside_payline} - maybe next time!"],
         "Your lucky emoji for the day? {random_payline}!",
         "[GLaDOS voice] There's a hole in the sky, through which {random_payline} can fly.",
         "No reel left unspun!",
@@ -95,7 +93,7 @@
         "You wouldn't download a('{random_payline}')!",
         "{random_payline} is my favourite on {month} {weekday}s.",
         "It's {random_payline} time!",
-        [["I bet some of you thought", "Truth is,"], " this combination was ", ["lewd", "deep", "incredibly boring", "all about {random_payline}", "better with {random_outside_payline} instead"], "."],
+        [["I bet some of you thought", "Truth is,"], " this combination was ", ["lewd", "deep", "incredibly boring", "all about {random_payline}"], "."],
         "Never gonna give {random_payline} up, never gonna let {random_payline} down.",
         "\"You're a('{random_payline}'), Harry!\"",
         "It's a delivery for you: a('{random_payline}')",
