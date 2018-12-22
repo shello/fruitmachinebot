@@ -86,7 +86,7 @@
         "No reel left unspun!",
         "Rules: {payline[0]} beats {payline[2]}; {payline[1]} beats {payline[0]}; {payline[2]} beats {payline[1]}.",
         "I'm only a bot. I couldn't tell you if {random_payline} matches this {machine} fruit machine...",
-        [["Ask yourself:", "Quick question:", "Take a moment to consider:", "Here's a deep one:"], " is a('{random_payline}') ", ["a fruit", "a wizard", "real", "magic", "scary", "mysterious", "edible"], "?"],
+        [["Ask yourself:", "Quick question:", "Take a moment to consider:"], " is a('{random_payline}') ", ["a fruit", "a wizard", "real", "magic", "scary", "mysterious", "edible", "inflatable", "slimy", "something to awoo at", "gay", "thicc"], "?"],
         [["{month}", "{weekday}"], " is never complete without a('{random_payline}')."],
         "Tomorrow is Bring Your {random_payline} To Work Day!",
         "{weekday}? {random_payline}!",
@@ -97,8 +97,7 @@
         "Never gonna give {random_payline} up, never gonna let {random_payline} down.",
         "\"You're a('{random_payline}'), Harry!\"",
         "It's a delivery for you: a('{random_payline}')",
-        "{random_payline} is the best medicine.",
-        "Old-time proverb: \"a('{random_payline}') a day keeps the doctor away\".",
+        ["Old-time proverb: \"", ["a('{random_payline}') a day keeps the doctor away", "The {random_payline} is mightier than the sword", "{random_payline} is the best medicine", "Never look a gift {random_payline} in the mouth"], "\"."],
         "It's a bird!? It's a plane!? It's {random_payline}!",
         "If I could only take one thing to a deserted island, {random_payline} would be it..."
     ]
