@@ -34,6 +34,11 @@
             "description": "Pink",
             "background": "resources/machines/240-background.png",
             "foreground": "resources/machines/240-foreground.png"
+        },
+        {
+            "description": "Gay Pink",
+            "background": "resources/machines/gaypink-background.png",
+            "foreground": "resources/machines/gaypink-foreground.png"
         }
     ],
     "reels": [
