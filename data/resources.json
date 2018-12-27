@@ -155,6 +155,6 @@
         "It's a bird!? It's a plane!? It's {random_payline}!",
         "If I could only take one thing to a deserted island, {random_payline} would be it...",
         "Look, let's not talk about {random_payline}, ok?",
-        "a({random_payline})...? 😏"
+        "a('{random_payline}')...? 😏"
     ]
 }
