@@ -86,6 +86,7 @@
     },
     "status_templates": [
         "I'm no one-arm-bandit!",
+        "I'm a no-armed bandit!",
         "Your lucky emoji for the day? {random_payline}!",
         "[GLaDOS voice] There's a hole in the sky, through which {random_payline} can fly.",
         "No reel left unspun!",
