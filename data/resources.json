@@ -96,7 +96,9 @@
             [
                 "Ask yourself:",
                 "Quick question:",
-                "Take a moment to consider:"
+                "Take a moment to consider:",
+                "Quiz time:",
+                "I've been thinking..."
             ],
             " is a('{random_payline}') ",
             [
@@ -156,6 +158,9 @@
         "It's a bird!? It's a plane!? It's {random_payline}!",
         "If I could only take one thing to a deserted island, {random_payline} would be it...",
         "Look, let's not talk about {random_payline}, ok?",
-        "a('{random_payline}')...? 😏"
+        "a('{random_payline}')...? 😏",
+        "Boop the {random_payline}! :3",
+        "It is truly a marvel of modern times that we have a('{random_payline}').",
+        "As Seen On TV: {random_payline}"
     ]
 }
