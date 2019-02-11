@@ -152,7 +152,9 @@
                 "a('{random_payline}') a day keeps the doctor away",
                 "The {random_payline} is mightier than the sword",
                 "{random_payline} is the best medicine",
-                "Never look a gift {random_payline} in the mouth"],
+                "Never look a gift {random_payline} in the mouth",
+                "The squeaky {random_payline} gets the grease"
+            ],
             "\"."
         ],
         "It's a bird!? It's a plane!? It's {random_payline}!",
@@ -161,6 +163,40 @@
         "a('{random_payline}')...? 😏",
         "Boop the {random_payline}! :3",
         "It is truly a marvel of modern times that we have a('{random_payline}').",
-        "As Seen On TV: {random_payline}"
+        "As Seen On TV: {random_payline}",
+        [
+            [
+                "Post ",
+                "Tell us ",
+                "Kindpost "
+            ],
+            [
+                "nice things ",
+                "sweet things ",
+                "your thoughts ",
+                ""
+            ],
+            "about {random_payline}."
+        ],
+        "Why did the {random_payline} cross the road?",
+        [
+            [
+                "I want",
+                "May I have"
+            ],
+            " a('{random_payline}') shipped to me ",
+            [
+                "through snail mail",
+                "over the cybrenet",
+                "carried by pigeon post"
+            ],
+            [
+                " for my birthday",
+                " without seeming too suspicious",
+                " around the world",
+                ""
+            ],
+            "?"
+        ]
     ]
 }
