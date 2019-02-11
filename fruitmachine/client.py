@@ -4,7 +4,7 @@ import logging
 import os.path
 from typing import BinaryIO, Optional
 
-from mastodon import Mastodon
+from mastodon import Mastodon, MastodonError
 
 _DEFAULT_API = 'https://botsin.space'
 
@@ -66,14 +66,33 @@ class Client:
             raise RuntimeError("Unable to post, client isn't initialised.")
 
         # Upload/post image file
-        media_data = self._masto.media_post(media_fp,
-                                            mime_type=media_mime_type,
-                                            description=media_description)
+        try:
+            media_data = self._masto.media_post(media_fp,
+                                                mime_type=media_mime_type,
+                                                description=media_description)
+        except MastodonError as e:
+            logging.error("Error uploading media.")
+            logging.error(e)
+            raise RuntimeError("Unable to upload media file.") from e
+
+        if not media_data:
+            raise RuntimeError("Empty media dict returned from upload.")
+
         logging.info(f"Uploaded image: {media_data}")
 
         # Then post the status with the media file
         status_visibility = 'direct' if self.debug else 'public'
-        status_data = self._masto.status_post(status,
-                                              media_ids=[media_data],
-                                              visibility=status_visibility)
+
+        try:
+            status_data = self._masto.status_post(status,
+                                                  media_ids=[media_data],
+                                                  visibility=status_visibility)
+        except MastodonError as e:
+            logging.error("Error while posting status.")
+            logging.error(e)
+            raise RuntimeError("Unable to post status") from e
+
+        if not status_data:
+            raise RuntimeError("Empty toot dict returned from posting.")
+
         logging.info(f"Posted {status_visibility} status: {status_data}")
