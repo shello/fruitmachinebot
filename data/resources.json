@@ -181,14 +181,15 @@
         "Why did the {random_payline} cross the road?",
         [
             [
-                "I want",
-                "May I have"
+                "Did I know you I want",
+                "May I have",
+                "Would it be possible to have"
             ],
             " a('{random_payline}') shipped to me ",
             [
                 "through snail mail",
                 "over the cybrenet",
-                "carried by pigeon post"
+                "by pigeon post"
             ],
             [
                 " for my birthday",
