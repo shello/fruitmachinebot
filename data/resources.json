@@ -113,7 +113,8 @@
                 "slimy",
                 "something to awoo at",
                 "gay",
-                "thicc"
+                "thicc",
+                "cursed"
             ],
             "?"
         ],
@@ -145,7 +146,6 @@
         ],
         "Never gonna give {random_payline} up, never gonna let {random_payline} down.",
         "\"You're a('{random_payline}'), Harry!\"",
-        "It's a delivery for you: a('{random_payline}')",
         [
             "Old-time proverb: \"",
             [
@@ -164,40 +164,19 @@
         "Boop the {random_payline}! :3",
         "It is truly a marvel of modern times that we have a('{random_payline}').",
         "As Seen On TV: {random_payline}",
-        [
-            [
-                "Post ",
-                "Tell us ",
-                "Kindpost "
-            ],
-            [
-                "nice things ",
-                "sweet things ",
-                "your thoughts ",
-                ""
-            ],
-            "about {random_payline}."
-        ],
         "Why did the {random_payline} cross the road?",
+        "Close your eyes, breathe in... can you smell the {random_payline}?",
         [
+            "*",
             [
-                "Did I know you I want",
-                "May I have",
-                "Would it be possible to have"
+                "Kisses",
+                "Cuddles",
+                "Pats"
             ],
-            " a('{random_payline}') shipped to me ",
-            [
-                "through snail mail",
-                "over the cybrenet",
-                "by pigeon post"
-            ],
-            [
-                " for my birthday",
-                " without seeming too suspicious",
-                " around the world",
-                ""
-            ],
-            "?"
-        ]
+            " {random_payline}*"
+        ],
+        "I have a {payline[0]}, I have a {payline[2]}\n\n*UHH*\n\n{payline[1]}!",
+        "🎶 You spin me right round, baby,\n🎶 right round like a {random_payline}, baby\n🎶 right round round round!\n(I want your loooove... 🎶)",
+        "🎶 Rollin' around at the speed of sound\n🎶 Got places to go, gotta follow my {random_payline}!"
     ]
 }
