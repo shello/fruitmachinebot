@@ -43,7 +43,7 @@
     ],
     "reels": [
         [
-            "resources/emoji/food_drink_herbs/fruit_veg",
+            "resources/emoji/food_drink_herbs",
             "resources/emoji/nature_effects/plants",
             "resources/emoji/objects",
             "resources/emoji/symbols/restrictive"
@@ -53,13 +53,15 @@
             "resources/emoji/nature_effects/weather",
             "resources/emoji/nature_effects/effects",
             "resources/emoji/objects",
-            "resources/emoji/symbols/arrows"
+            "resources/emoji/symbols/arrows",
+            "resources/emoji/symbols/hearts"
         ],
         [
-            "resources/emoji/food_drink_herbs/fruit_veg",
+            "resources/emoji/food_drink_herbs",
             "resources/emoji/nature_effects/plants",
             "resources/emoji/objects",
-            "resources/emoji/symbols/restrictive"
+            "resources/emoji/symbols/restrictive",
+            "resources/emoji/symbols/textual"
         ]
     ],
     "replacement_words": {
