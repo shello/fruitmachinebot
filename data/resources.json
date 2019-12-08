@@ -179,6 +179,9 @@
         ],
         "I have a {payline[0]}, I have a {payline[2]}\n\n*UHH*\n\n{payline[1]}!",
         "🎶 You spin me right round, baby,\n🎶 right round like a {random_payline}, baby\n🎶 right round round round!\n(I want your loooove... 🎶)",
-        "🎶 Rollin' around at the speed of sound\n🎶 Got places to go, gotta follow my {random_payline}!"
+        "🎶 Rollin' around at the speed of sound\n🎶 Got places to go, gotta follow my {random_payline}!",
+        "I'm up all night to get {random_payline}.",
+        "One of these things is not like the others... 🤔",
+        "Cheeky {random_payline}."
     ]
 }
