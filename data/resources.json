@@ -103,7 +103,8 @@
                 "Quick question:",
                 "Take a moment to consider:",
                 "Quiz time:",
-                "I've been thinking..."
+                "I've been thinking...",
+                "Hey, quick question:"
             ],
             " is a('{random_payline}') ",
             [
@@ -119,7 +120,8 @@
                 "something to awoo at",
                 "gay",
                 "thicc",
-                "cursed"
+                "cursed",
+                "lewd"
             ],
             "?"
         ],
@@ -135,22 +137,7 @@
         "You wouldn't download a('{random_payline}')!",
         "{random_payline} is my favourite on {month} {weekday}s.",
         "It's {random_payline} time!",
-        [
-            [
-                "I know that some of you thought that",
-                "I tried not to, but",
-                "Not bad! My efforts were successful, and"
-            ],
-            " this combination turned out ",
-            [
-                "lewd",
-                "incredibly boring",
-                "to be about {random_payline}"
-            ],
-            "."
-        ],
         "Never gonna give {random_payline} up, never gonna let {random_payline} down.",
-        "\"You're a('{random_payline}'), Harry!\"",
         [
             "Old-time proverb: \"",
             [
@@ -175,6 +162,7 @@
             "*",
             [
                 "Kisses",
+                "Hugs",
                 "Cuddles",
                 "Pats"
             ],
@@ -185,6 +173,10 @@
         "🎶 Rollin' around at the speed of sound\n🎶 Got places to go, gotta follow my {random_payline}!",
         "I'm up all night to get {random_payline}.",
         "One of these things is not like the others... 🤔",
-        "Cheeky {random_payline}."
+        "Cheeky {random_payline}.",
+        "{random_payline}! {random_payline}! {random_payline}!",
+        "Oh yeah!\n...wait, a({random_payline})?",
+        "What does the {random_payline} say?",
+        "It's dangerous to go alone! Take this.\n🔥 🧙 🔥\n*{random_payline}*"
     ]
 }
