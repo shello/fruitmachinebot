@@ -12,6 +12,13 @@ else
     . .venv/bin/activate
 fi
 
+if [ -r .ENV ]; then
+    set -a
+    # shellcheck disable=SC1091
+    . .ENV
+    set +a
+fi
+
 python3 -m fruitmachine "$@"
 
 deactivate  # Probably needless, but...

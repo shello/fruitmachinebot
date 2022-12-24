@@ -57,13 +57,15 @@ The standard output will show a status and image description.
 
 #### Posting to Mastodon
 
-To post to Mastodon, you need to set up the client by one of two ways:
+To post to Mastodon, you need to set up the client by one of the following ways:
 
 1. Set the `FRUITMACHINE_CLIENT_ID`, `FRUITMACHINE_CLIENT_SECRET` and
    `FRUITMACHINE_ACCESS_TOKEN` environment variables with the values given on
    the Settings > Development > Your application interface of your Mastodon
    instance;
-2. Create two text files, `data/client_cred.secret` and `data/user_cred.secret`.
+2. Create a file named `.ENV` in the root directory of the project, with the
+   same variables as above in the format `variable_name=value`, one per line.
+3. Create two text files, `data/client_cred.secret` and `data/user_cred.secret`.
    The first file should have the "Client ID" in the first line, and the "Client
    Secret" in second line; the second file needs to have the "Access Token" in
    the first line.

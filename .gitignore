@@ -1,3 +1,4 @@
+.ENV
 data/*.secret
 __pycache__/
 .mypy_cache
