@@ -175,7 +175,7 @@
         "One of these things is not like the others... 🤔",
         "Cheeky {random_payline}.",
         "{random_payline}! {random_payline}! {random_payline}!",
-        "Oh yeah!\n...wait, a({random_payline})?",
+        "Oh yeah!\n...wait, a('{random_payline}')?",
         "What does the {random_payline} say?",
         "It's dangerous to go alone! Take this.\n🔥 🧙 🔥\n*{random_payline}*"
     ]
