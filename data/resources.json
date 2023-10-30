@@ -93,10 +93,7 @@
         "I'm no one-arm-bandit!",
         "I'm a no-armed bandit!",
         "Your lucky emoji for the day? {random_payline}!",
-        "[GLaDOS voice] There's a hole in the sky, through which {random_payline} can fly.",
-        "No reel left unspun!",
         "Rules: {payline[0]} beats {payline[2]}; {payline[1]} beats {payline[0]}; {payline[2]} beats {payline[1]}.",
-        "I'm only a bot. I couldn't tell you if {random_payline} matches this {machine} fruit machine...",
         [
             [
                 "Ask yourself:",
@@ -137,7 +134,6 @@
         "You wouldn't download a('{random_payline}')!",
         "{random_payline} is my favourite on {month} {weekday}s.",
         "It's {random_payline} time!",
-        "Never gonna give {random_payline} up, never gonna let {random_payline} down.",
         [
             "Old-time proverb: \"",
             [
@@ -145,18 +141,14 @@
                 "The {random_payline} is mightier than the sword",
                 "{random_payline} is the best medicine",
                 "Never look a gift {random_payline} in the mouth",
-                "The squeaky {random_payline} gets the grease"
+                "The squeaky {random_payline} gets the grease",
+                "When life gives you a('{random_payline}'), make {random_payline}-ade"
             ],
             "\"."
         ],
-        "It's a bird!? It's a plane!? It's {random_payline}!",
-        "If I could only take one thing to a deserted island, {random_payline} would be it...",
-        "Look, let's not talk about {random_payline}, ok?",
-        "a('{random_payline}')...? 😏",
         "Boop the {random_payline}! :3",
         "It is truly a marvel of modern times that we have a('{random_payline}').",
         "As Seen On TV: {random_payline}",
-        "Why did the {random_payline} cross the road?",
         "Close your eyes, breathe in... can you smell the {random_payline}?",
         [
             "*",
@@ -164,19 +156,29 @@
                 "Kisses",
                 "Hugs",
                 "Cuddles",
-                "Pats"
+                "Pats",
+                "Naps cuddling"
             ],
             " {random_payline}*"
         ],
-        "I have a('{payline[0]}'), I have a('{payline[2]}')\n\n*UHH*\n\n{payline[1]}!",
         "🎶 You spin me right round, baby,\n🎶 right round like a('{random_payline}'), baby\n🎶 right round round round!\n(I want your loooove... 🎶)",
         "🎶 Rollin' around at the speed of sound\n🎶 Got places to go, gotta follow my {random_payline}!",
-        "I'm up all night to get {random_payline}.",
+        "🎶 I'm up all night to get {random_payline}. 🎶",
         "One of these things is not like the others... 🤔",
         "Cheeky {random_payline}.",
         "{random_payline}! {random_payline}! {random_payline}!",
         "Oh yeah!\n...wait, a('{random_payline}')?",
-        "What does the {random_payline} say?",
-        "It's dangerous to go alone! Take this.\n🔥 🧙 🔥\n*{random_payline}*"
+        "It's dangerous to go alone! Take this.\n🔥 🧙 🔥\n*{random_payline}*",
+        "Today's emoji forecast: {random_payline} with a chance of {random_outside_payline}.",
+        "Life is like a box of emoji; you never know which {random_payline} you're gonna get.",
+        "Your randomly selected emoji is: {random_payline}. Try using it in an email today.",
+        "{weekday} vibes: It's a('{random_payline}') kind of day!",
+        "The only workout I need is lifting a('{random_payline}') to my mouth!",
+        "I don't have a sweet tooth; I have a('{random_payline}') tooth.",
+        "I slipped in a cheeky {random_payline} for y'all who've been thinking about it all day.",
+        "Traceback (most recent call last):\n  File 'emoji.py', line 245\n    assert '{random_payline}' not in naughty\nAssertionError: '{random_payline}' is grounded for causing trouble.",
+        "Is it getting hot in here, or is it just that {random_payline}?",
+        "Noooo, not a('{random_payline}') again!",
+        "Welcome to the {random_payline} zone!"
     ]
 }
