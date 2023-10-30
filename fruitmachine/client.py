@@ -60,7 +60,7 @@ class Client:
                 **auth_kwargs)
 
     def post(self, status: str, media_fp: BinaryIO, media_mime_type: str,
-             media_description: str):
+             media_description: str, bookmark: bool = False):
         """Send a status post with a media file."""
         if not self._masto:
             raise RuntimeError("Unable to post, client isn't initialised.")
@@ -96,3 +96,13 @@ class Client:
             raise RuntimeError("Empty toot dict returned from posting.")
 
         logging.info(f"Posted {status_visibility} status: {status_data}")
+
+        if bookmark:
+            try:
+                self._masto.status_bookmark(id=status_data.id)
+            except MastodonError as e:
+                logging.error("Error while bookmarking status.")
+                logging.error(e)
+                raise RuntimeError(f"Unable to bookmark status id {status_data.id}.")
+
+            logging.info(f"Bookmarked status {status_data.id}")

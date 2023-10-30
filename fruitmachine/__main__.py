@@ -11,10 +11,12 @@ def main_local(out_filename: str):
     fruit_machine = FruitMachine()
 
     with open(out_filename, mode='wb') as out_file:
-        description, status = fruit_machine.generate(out_file)
+        description, status, jackpot = fruit_machine.generate(out_file)
 
     print(status)
     print("    Image description:", description)
+    if jackpot:
+        print("    Jackpot!!")
 
 
 def main_post(debug: bool = False):
@@ -45,13 +47,13 @@ def main_post(debug: bool = False):
     fruit_machine = FruitMachine()
 
     with tempfile.NamedTemporaryFile(mode='w+b') as image:
-        (description, status) = fruit_machine.generate(image)
+        (description, status, jackpot) = fruit_machine.generate(image)
 
         # Be kind, rewind!
         image.seek(0)
 
         client.post(status=status, media_fp=image, media_mime_type="image/png",
-                    media_description=description)
+                    media_description=description, bookmark=jackpot)
 
 
 def main():

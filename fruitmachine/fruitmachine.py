@@ -45,7 +45,7 @@ class FruitMachine:
 
         return tuple(reels)
 
-    def randomize_machine(self) -> Tuple[MachineStyle, SpunReels, str, str]:
+    def randomize_machine(self) -> Tuple[MachineStyle, SpunReels, str, str, bool]:
         """Generate a machine and its messages."""
         machine = self.get_random_machine()
         reels = self.get_random_reel_symbols(count=len(machine.positions[0]))
@@ -58,7 +58,9 @@ class FruitMachine:
         status_message = PhraseGenerator(self.res.get_status_templates()) \
             .generate_phrase(machine=machine, reels=reels)
 
-        return machine, reels, description, status_message
+        jackpot = payline[0] == payline[1] == payline[2]
+
+        return machine, reels, description, status_message, jackpot
 
     def generate_image(self, machine: MachineStyle, reels: SpunReels,
                        fp: BinaryIO):
@@ -75,10 +77,10 @@ class FruitMachine:
 
         img.save(fp, format='PNG')
 
-    def generate(self, image_fp: BinaryIO) -> Tuple[str, str]:
-        """Generate a random fruit machine image, description and status."""
-        machine, reels, description, status_message = self.randomize_machine()
+    def generate(self, image_fp: BinaryIO) -> Tuple[str, str, bool]:
+        """Generate a random fruit machine image, description, status message, and jackpot status."""
+        machine, reels, description, status_message, jackpot = self.randomize_machine()
 
         self.generate_image(machine=machine, reels=reels, fp=image_fp)
 
-        return description, status_message
+        return description, status_message, jackpot
