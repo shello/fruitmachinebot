@@ -81,7 +81,7 @@ class Client:
         logging.info(f"Uploaded image: {media_data}")
 
         # Then post the status with the media file
-        status_visibility = 'direct' if self.debug else 'public'
+        status_visibility = 'direct' if self.debug else 'unlisted'
 
         try:
             status_data = self._masto.status_post(status,
