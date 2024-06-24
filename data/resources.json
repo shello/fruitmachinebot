@@ -43,28 +43,48 @@
     ],
     "reels": [
         [
+            "resources/emoji/activities_clothing/clothing",
+            "resources/emoji/activities_clothing/performing_arts",
+            "resources/emoji/activities_clothing/sports",
+            "resources/emoji/extra",
             "resources/emoji/food_drink_herbs",
             "resources/emoji/nature_effects/plants",
+            "resources/emoji/nature_effects/weather",
+            "resources/emoji/nature_effects/moon",
             "resources/emoji/objects",
-            "resources/emoji/extra",
-            "resources/emoji/symbols/restrictive"
+            "resources/emoji/symbols/restrictive",
+            "resources/emoji/travel_places/road",
+            "resources/emoji/travel_places/space",
+            "resources/emoji/travel_places/trains"
         ],
         [
+            "resources/emoji/activities_clothing/clothing",
+            "resources/emoji/activities_clothing/performing_arts",
+            "resources/emoji/activities_clothing/sports",
             "resources/emoji/expressions",
-            "resources/emoji/nature_effects/weather",
-            "resources/emoji/nature_effects/effects",
-            "resources/emoji/objects",
             "resources/emoji/extra",
+            "resources/emoji/nature_effects/effects",
+            "resources/emoji/nature_effects/weather",
+            "resources/emoji/nature_effects/moon",
+            "resources/emoji/objects",
             "resources/emoji/symbols/arrows",
             "resources/emoji/symbols/hearts"
         ],
         [
+            "resources/emoji/activities_clothing/clothing",
+            "resources/emoji/activities_clothing/performing_arts",
+            "resources/emoji/activities_clothing/sports",
+            "resources/emoji/extra",
             "resources/emoji/food_drink_herbs",
             "resources/emoji/nature_effects/plants",
+            "resources/emoji/nature_effects/weather",
+            "resources/emoji/nature_effects/moon",
             "resources/emoji/objects",
-            "resources/emoji/extra",
             "resources/emoji/symbols/restrictive",
-            "resources/emoji/symbols/textual"
+            "resources/emoji/symbols/textual",
+            "resources/emoji/travel_places/road",
+            "resources/emoji/travel_places/space",
+            "resources/emoji/travel_places/trains"
         ]
     ],
     "replacement_words": {
